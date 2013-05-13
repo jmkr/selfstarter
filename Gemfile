@@ -6,7 +6,7 @@ gem 'rails', '3.2.13'
 gem 'json', '~> 1.7.7'
 
 group :development do
-  gem 'sqlite3'
+  gem 'pg'
   gem 'pry-rails'
 end
 
@@ -36,3 +36,8 @@ gem 'amazon_flex_pay'
 
 # Configuration File
 gem 'rails_config'
+
+# Rails Admiin
+gem 'rails_admin'
+
+gem "devise"
