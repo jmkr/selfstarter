@@ -7,26 +7,26 @@
 
 # Set your project goal here - dollar amount
 # NOTE: if you manually want to adjust your progress to test the site, head over to the Order model (app/models/order.rb)
-project_goal: 100000
+project_goal: 1000
 
 # If you want to edit the FAQ, head over to app/views/preorder/homepage/_faqs.html.erb
 
 # This'll be both the page title (<title></title>) and the name in the header
-product_name: "Selfstarter"
+product_name: "CraftCrate"
 
 # This will be used in sentences like Hooray You've just reserved product_description
-product_description: "a set of widgets"
+product_description: "your first CraftCrate"
 
 # An image showcasing your product -- it'll show up when you pin your product
 # It should be in app/assets/images
 product_image_path: "my-product-image.png"
 
 # The message on the preorder page, Lockitron's is ""
-value_proposition: "Roll your own crowdfunding"
+value_proposition: "Once a month mystery crafting"
 
 # YouTube or Vimeo Video URL (The embed URL, without the query string options)
 # Replace /embed/ in your video url path with /v/ for video playback to work.
-video_embed_url: "https://www.youtube.com/v/D1L3o88GKew"
+video_embed_url: "http://www.youtube.com/v/x_maXaIt2dE"
 
 # If set to true, then the image at "/assets/video_placeholder.png" will be shown in place of the youtube
 # video.  When the user clicks it, the vid will replace the image and start playing.
@@ -39,8 +39,8 @@ use_video_placeholder: true
 # Amazon settings -- you'll need an Amazon Payments account, sign up here --> http://bit.ly/SGksTv
 
 # To find your access key and secret key, head over to here --> http://bit.ly/R4I4ky (Follow that guide in the Seller Central page)
-amazon_access_key: "YOUR_AMAZON_ACCESS_KEY"
-amazon_secret_key: "YOUR_AMAZON_SECRET_KEY"
+amazon_access_key: "AKIAICGWL4V2AWCDPO2Q"
+amazon_secret_key: "+2CqbGo2E+BlR82MTOH/7ykX21UtHEIQX9uP3oHW"
 price: 	19.95
 
 # if use_payment_options is set to true, then a set of radio buttons will be displayed with various payment options.
@@ -58,12 +58,12 @@ charge_limit: 25.00
 # Stats settings
 
 # On Lockitron, it's "backers"
-primary_stat: "backers"
+primary_stat: "crafters"
 # This'll show up in the tweet as, "I'm backer number ..."
-primary_stat_verb: 'backer'
+primary_stat_verb: 'crafter'
 
 # The 2nd call to action button, towards the middle-ish of the page
-middle_reserve_text: "Reserve Now"
+middle_reserve_text: "Order Now"
 
 # When the project should end
 expiration_date: <%= DateTime.now + 29 %>
@@ -74,15 +74,15 @@ progress_text: "Implemented"
 # Call to action section
 
 # On Lockitron, it's "First Batch Ships in March 2013"
-ships: "Ships...sometime"
+ships: "First crates ship in July 2013"
 
 # On Lockitron, it's "Reserve Now"
 call_to_action: "Reserve Now"
 # On Lockitron, this is "Only $149 for a limited time"
-price_human: "It costs money!"
+price_human: "$29"
 
 # The paragraph below the price. You'd probably say something about how you're not going to charge them before it ships (so it's less risky).
-dont_give_them_a_reason_to_say_no: "You'll get this exact site. All you'll need to get started is a great product."
+dont_give_them_a_reason_to_say_no: "We won’t charge your card until your CraftCrate is ready. Shipping included to the United States."
 
 # Social Stuff
 facebook_app_id: "1234567890"
@@ -91,7 +91,7 @@ facebook_app_id: "1234567890"
 tweet_text: "to crowdfund"
 
 # Google Analytics
-google_id: "1234567890"
+google_id: "UA-39975268-1"
 
 # If you want to change the images for the key points (e.g. "Kickstarter is not a store")
 # They're in app/assets/images/#{pointer_number}-background.png
