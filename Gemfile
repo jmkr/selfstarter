@@ -31,9 +31,6 @@ end
 # jQuery
 gem 'jquery-rails'
 
-# Kickstarter's awesome Amazon Flexible Payments gem
-gem 'amazon_flex_pay'
-
 # Configuration File
 gem 'rails_config'
 
@@ -41,3 +38,9 @@ gem 'rails_config'
 gem 'rails_admin'
 
 gem "devise"
+
+# Stripe
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
+# Figaro for configuring env variables
+gem 'figaro'

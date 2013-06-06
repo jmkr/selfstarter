@@ -1,7 +1,7 @@
 class CreateOrders < ActiveRecord::Migration
   def change
     create_table :orders, :id => false do |t|
-      t.string  :token
+      t.string  :stripe_id
       t.string  :transaction_id
       t.string  :address_one
       t.string  :address_two
@@ -12,13 +12,14 @@ class CreateOrders < ActiveRecord::Migration
       t.string  :status
       t.string  :number
       t.string  :uuid
-      t.string  :user_id
+      t.integer  :user_id
       t.decimal :price
       t.decimal :shipping
       t.string  :tracking_number
       t.string  :phone
       t.string  :name
-      t.date    :expiration
+      t.string  :exp_month
+      t.string  :exp_year
 
       t.timestamps
     end
