@@ -3,7 +3,7 @@
     <div class="main_content <%= "payment_options" if Settings.use_payment_options %>">
       <h3>Check out</h3>
       <p>
-        All of your payment information will be secured and stored with Amazon Payments. If you don't have an Amazon account, simply select "I'm a new Customer" on the next page.
+        All of your payment information will be secured and stored with <a href="https://stripe.com/">Stripe</a>.
         <br />
         <br />
         <% if Settings.use_payment_options %>
@@ -14,19 +14,43 @@
 
       </p>
       <%= form_tag "/preorder/prefill", :id => "checkout" do %>
-        <%= render 'preorder/payment_options' %>
         <div class="checkout_controls">
           <div class="checkout_controls_wrapper">
             <div class="checkout_controls_inner">
-              <%= email_field_tag "email", nil, :placeholder => "Email address", :required => "required", :id => "email" %>
+              <span class="payment-errors"></span>
               <%= hidden_field_tag "preorder", true %>
               <%= hidden_field_tag "quantity", params[:quantity] %>
-              <%= submit_tag "Checkout", :class => "blue_button disabled", :id => "amazon_button" %>
+              <%= email_field_tag "email", nil, :placeholder => "Email address", :required => "required", :id => "email" %>
+
+              <script src="https://checkout.stripe.com/v2/checkout.js" type="text/javascript"></script>
+              <%= submit_tag "Checkout", :class => "blue_button disabled", :id => "amazon_button" %>  
+              <script>
+                $('#amazon_button').click(function(){
+                  var token = function(res){
+                    var $input = $('<input type=hidden name=stripeToken />').val(res.id);
+                    $('form').append($input).submit();
+                  };
+              
+                  StripeCheckout.open({
+                    key:         '<%= Rails.configuration.stripe[:publishable_key]%>',
+                    address:     true,
+                    amount:      <%= Settings.price * 100 %>,
+                    currency:    'usd',
+                    name:        'CraftCrate',
+                    description: 'A monthly subscription',
+                    panelLabel:  'Checkout',
+                    token:       token
+                  });
+              
+                  return false;
+                });
+              </script>
             </div>
           </div>
         </div>
       <% end %>
     </div>
+
     <%= render 'preorder/checkout/sidebar' %>
   </div>
 </div>
