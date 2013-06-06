@@ -1,11 +1,19 @@
 class Order < ActiveRecord::Base
-  attr_accessible :address_one, :address_two, :city, :country, :number, :state, :status, :token, :transaction_id, :zip,
-                  :shipping, :tracking_number, :name, :price, :phone, :expiration, :payment_option
+  # Address information
+  attr_accessible :address_one, :address_two, :city, :country, :number, :state, :zip, :phone
+
+  # Shipping and billing information.
+  attr_accessible :stripe_id, :status, :shipping, :tracking_number, :expiration, :payment_option,
+    :exp_month, :exp_year
+
+  # Product information.
+  attr_accessible :price, :name
+
   attr_readonly :uuid
   before_validation :generate_uuid!, :on => :create
   belongs_to :user
   belongs_to :payment_option
-  scope :completed, where("token != ? OR token != ?", "", nil)
+  scope :completed, where("stripe_id != ? OR stripe_id != ?", "", nil)
   self.primary_key = 'uuid'
 
   # This is where we create our Caller Reference for Amazon Payments, and prefill some other information.
@@ -22,19 +30,20 @@ class Order < ActiveRecord::Base
   end
 
   # After authenticating with Amazon, we get the rest of the details
-  def self.postfill!(options = {})
-    @order = Order.find_by_uuid!(options[:callerReference])
-    @order.token             = options[:tokenID]
-    if @order.token.present?
-      @order.address_one     = options[:addressLine1]
-      @order.address_two     = options[:addressLine2]
-      @order.city            = options[:city]
-      @order.state           = options[:state]
-      @order.status          = options[:status]
-      @order.zip             = options[:zip]
-      @order.phone           = options[:phoneNumber]
-      @order.country         = options[:country]
-      @order.expiration      = Date.parse(options[:expiry])
+  def self.postfill!(uuid, customer)
+
+    @order = Order.find_by_uuid!(uuid)
+    @order.stripe_id         = customer.id
+    if @order.stripe_id.present?
+      @order.address_one     = customer[:active_card][:address_line1]
+      @order.address_two     = customer[:active_card][:address_line2]
+      @order.city            = customer[:active_card][:address_city]
+      @order.state           = customer[:active_card][:address_state]
+      @order.zip             = customer[:active_card][:address_zip]
+      @order.phone           = customer[:active_card][:phone]
+      @order.country         = customer[:active_card][:address_country]
+      @order.exp_month       = customer[:active_card][:exp_month]
+      @order.exp_year        = customer[:active_card][:exp_year]
       @order.save!
 
       @order

@@ -23,3 +23,6 @@ config/environments/*.local.yml
 
 # yes, I use an ide
 .idea/*
+
+# Ignore application configuration
+/config/application.yml
