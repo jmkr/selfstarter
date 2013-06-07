@@ -67,4 +67,8 @@ Selfstarter::Application.configure do
 
   # Config action mailer url
   config.action_mailer.default_url_options = { :host => 'craftcrate.heroku.com' }
+
+  ## Don't care about errors ... just for now
+  config.action_mailer.raise_delivery_errors = false
+  
 end
