@@ -8,22 +8,22 @@
 }
 .clearfix:after 
 {
-    clear:both;
+  clear:both;
 }
 /* For IE 6/7 (trigger hasLayout) */
 .clearfix {
-    zoom:1;
+  zoom:1;
 }
 
- code
- {
+code
+{
   border: 1px solid #CCC;
   padding: 1px;
   vertical-align: middle;
   font-family: "Consolas", "Inconsolata", "Meslo", "Inconsolata-dz", monospace;
   text-shadow: none;
   font-size: 10pt;
- }
+}
 
 html, body {
   width: 100%;
@@ -191,11 +191,11 @@ body.lt-ie9 {
   color: $button_color; /* text color */
   text-shadow: 0 -1px 1px $button-text_shadow_color; /* drop shadow */
   -moz-box-shadow:
-    0 1px 1px  $button_box_shadow_color /* drop shadow */,
-    inset 0 -1px $button_box_shadow_inset_color /* inner shadow */;
+  0 1px 1px  $button_box_shadow_color /* drop shadow */,
+  inset 0 -1px $button_box_shadow_inset_color /* inner shadow */;
   -webkit-box-shadow:
-    0 1px 1px $button_box_shadow_color /* drop shadow */,
-    inset 0 -1px 1px $button_box_shadow_inset_color /* inner shadow */;
+  0 1px 1px $button_box_shadow_color /* drop shadow */,
+  inset 0 -1px 1px $button_box_shadow_inset_color /* inner shadow */;
   background-image: $button_top_gradient; /* gradient fill */
   background-image: -moz-linear-gradient(90deg, $button_top_gradient 0%, $button_bottom_gradient 100%); /* gradient fill */
   background-image: -o-linear-gradient(90deg, $button_top_gradient 0%, $button_bottom_gradient 100%); /* gradient fill */
@@ -208,14 +208,14 @@ body.lt-ie9 {
 }
 .blue_button:hover {
   -moz-box-shadow:
-    0 1px 1px $button_box_shadow_color /* drop shadow */,
-    inset 0 -1px 1px $button_box_shadow_inset_color /* inner shadow */;
+  0 1px 1px $button_box_shadow_color /* drop shadow */,
+  inset 0 -1px 1px $button_box_shadow_inset_color /* inner shadow */;
   -webkit-box-shadow:
-    0 1px 1px$button_box_shadow_color /* drop shadow */,
-    inset 0 -1px 1px $button_box_shadow_inset_color /* inner shadow */;
+  0 1px 1px$button_box_shadow_color /* drop shadow */,
+  inset 0 -1px 1px $button_box_shadow_inset_color /* inner shadow */;
   box-shadow:
-    0 1px 1px $button_box_shadow_color /* drop shadow */,
-    inset 0 -1px 1px $button_box_shadow_inset_color /* inner shadow */;
+  0 1px 1px $button_box_shadow_color /* drop shadow */,
+  inset 0 -1px 1px $button_box_shadow_inset_color /* inner shadow */;
   background-image: $button_ie9_gradient_hover; /* gradient fill */
   background-image: -moz-linear-gradient(90deg, $button_top_gradient_hover 0%, $button_bottom_gradient_hover 100%); /* gradient fill */
   background-image: -o-linear-gradient(90deg, $button_top_gradient_hover 0%, $button_bottom_gradient_hover 100%); /* gradient fill */
@@ -226,14 +226,14 @@ body.lt-ie9 {
 
 .blue_button:active {
   -moz-box-shadow:
-    0 1px 1px $button_box_shadow_color /* drop shadow */,
-    inset 0 3px 5px $button_box_shadow_inset_color /* inner shadow */;
+  0 1px 1px $button_box_shadow_color /* drop shadow */,
+  inset 0 3px 5px $button_box_shadow_inset_color /* inner shadow */;
   -webkit-box-shadow:
-    0 1px 1px $button_box_shadow_color /* drop shadow */,
-    inset 0 3px 5px $button_box_shadow_inset_color /* inner shadow */;
+  0 1px 1px $button_box_shadow_color /* drop shadow */,
+  inset 0 3px 5px $button_box_shadow_inset_color /* inner shadow */;
   box-shadow:
-    0 1px 1px $button_box_shadow_color /* drop shadow */,
-    inset 0 3px 5px $button_box_shadow_inset_color /* inner shadow */;
+  0 1px 1px $button_box_shadow_color /* drop shadow */,
+  inset 0 3px 5px $button_box_shadow_inset_color /* inner shadow */;
   background-image: $button_ie9_gradient_active /* gradient fill */;
   background-image: -moz-linear-gradient(90deg, $button_top_gradient_active 0%, $button_bottom_gradient_active 100%); /* gradient fill */
   background-image: -o-linear-gradient(90deg, $button_top_gradient_active 0%, $button_bottom_gradient_active 100%); /* gradient fill */
