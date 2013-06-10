@@ -1,6 +1,9 @@
 #lockitron_header
 {
+  width: 186px;
+  float:none;
   border: none;
+  margin: 0 auto;
   a
   {
     border: none !important;
@@ -16,17 +19,79 @@
   box-shadow:         0px 1px 3px 0px #acacac;
   background: #fcfcfc;
   position: relative;
+
+  .wrapper
+  {
+    width: 100%;
+  }
 }
 
 #user_nav
 {
-  width: 280px;
   float: right;
   font-size: 16px;
   margin-top: 8px;
+  margin-right: 160px;
   
   a
   {
     color: #525252;
+  }
+
+  .login_button
+  {
+    font-family: "freight-sans-pro";
+    font-weight: 800;
+    color: #FFFFFF;
+    background-color: #dd604a;
+  }
+
+  .login_button:hover
+  {
+    background-color: rgb(223, 135, 120);
+    text-decoration: none;
+  }
+}
+
+#craft_nav
+{
+  ul
+  {
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
+
+    li
+    {
+      display: inline-block;
+    }
+
+    li.item
+    {      
+      padding: 0px 30px;
+
+      a
+      {
+        font-family: "felt-tip-woman",cursive;
+        -webkit-transition: color .4s ease;
+        -moz-transition: color .4s ease;
+        transition: color .4s ease;
+      }
+
+      a:hover
+      {
+        text-decoration: none;
+        color: #dd604a;
+      }
+    }
+
+    li.vertical_bar
+    {
+      background: #B6B6B6;
+      width: 1px;
+      height: 30px;
+      padding-top: -3px;
+      margin-bottom: -6px;
+    }
   }
 }

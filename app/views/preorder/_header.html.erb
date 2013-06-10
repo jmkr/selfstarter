@@ -2,12 +2,27 @@
   <div class="wrapper clearfix">
     <div id="user_nav">
       <% if user_signed_in? %>
-      Signed in as <%= current_user.email %>. Not you?
-      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+      Hi, <%= current_user.email %>
+      <%= link_to "LOGOUT", destroy_user_session_path, :method => :delete, :class => "btn login_button" %>
       <% else %>
-      <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+      <%= link_to "LOGIN", new_user_session_path, :class => "btn login_button" %>
       <% end %>
     </div>
   <h1 id="lockitron_header"><a href="/"><%= Settings.product_name %></a></h1>
   </div>
+</div>
+<div id="craft_nav">
+  <ul>
+    <li class="item">
+      <h3><a href="/">The Crate</a></h3>
+    </li>
+    <li class="vertical_bar"></li>
+    <li class="item">
+      <h3><a href="/">The Community</a></h3>
+    </li>
+    <li class="vertical_bar"></li>
+    <li class="item">
+      <h3><a href="/">The Creators</a></h3>
+    </li>
+  </ul>
 </div>
