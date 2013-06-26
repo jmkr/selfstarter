@@ -1,5 +1,7 @@
 Selfstarter::Application.routes.draw do
 
+  get "users/orders"
+  get "users/settings"
   devise_for :users
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'

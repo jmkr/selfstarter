@@ -11,10 +11,10 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :confirmable#, :validatable,
+         :recoverable, :rememberable, :trackable #, :confirmable, :validatable,
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :encrypted_password
+  attr_accessible :email, :password, :remember_me, :encrypted_password #,:password_confirmation,
 
   has_many :orders
 end
