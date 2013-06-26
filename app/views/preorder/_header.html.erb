@@ -2,7 +2,7 @@
   <div class="wrapper clearfix">
     <div id="user_nav">
       <% if user_signed_in? %>
-      Hi, <%= current_user.email %>
+      Hi, <%= link_to current_user.email, users_settings_path %>
       <%= link_to "LOGOUT", destroy_user_session_path, :method => :delete, :class => "btn login_button" %>
       <% else %>
       <%= link_to "LOGIN", new_user_session_path, :class => "btn login_button" %>

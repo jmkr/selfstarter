@@ -5,14 +5,22 @@ class PreorderController < ApplicationController
   end
 
   def checkout
+
+    puts "HERE!"
+    if @user = current_user
+      puts "current user?? #{@user.email}"
+    end
+
   end
 
   def prefill
-
-    unless params[:email].blank?
-      @user  = User.find_or_create_by_email!(params[:email])
+    if current_user
+      @user = current_user
+    elsif !params[:email].blank? && !params[:password].blank? && params[:password] == params[:passwordConfirm]
+      @user  = User.find_or_create_by_email!(params[:email], :password => params[:password])
+      sign_in @user, :bypass => true 
     else
-      raise Exception.new("Please enter an email address")
+      raise Exception.new("Please enter an email address and valid password")
     end
 
     if Settings.use_payment_options
