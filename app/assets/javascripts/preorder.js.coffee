@@ -1,24 +1,59 @@
 Selfstarter =
   firstTime: true
-  validateEmail: ->
+  validateEmailAndPassword: ->
     # The regex we use for validating email
     # It probably should be a parser, but there isn't enough time for that (Maybe in the future though!)
-    if /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/.test($("#email").val())
+    if /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/.test($("#email").val()) && $("#password").val() == $("#passwordConfirm").val() && $("#password").val() != "" && $("#password").val().length >= 6
       $("#email").removeClass("highlight")
-      $("#amazon_button").removeClass("disabled")
+      $("#email_next_button").removeClass("disabled")
     else
       $("#email").addClass("highlight") unless Selfstarter.firstTime
-      $("#amazon_button").addClass("disabled") unless $("#amazon_button").hasClass("disabled")
+      $("#email_next_button").addClass("disabled") unless $("#email_next_button").hasClass("disabled")
+  validatePassword: ->
+    console.log("validating password")
+    if $("#password").val() != $("#passwordConfirm").val()
+      $("#email_next_button").addClass("disabled") unless $("#email_next_button").hasClass("disabled")
+    else
+      $("#email_next_button").removeClass("disabled")
   init: ->
     checkoutOffset = $('body').height() - $('.footer').outerHeight() #needs to be done upon init
 
+    # Accounts for user already logged in and starting a checkout.
+    if $("#email_next_button").hasClass("disabled")
+      $("#email_next_button").removeClass("disabled")
+
     $("#email").bind "textchange", ->
-      Selfstarter.validateEmail()
+      Selfstarter.validateEmailAndPassword()
     $("#email").bind "hastext", ->
-      Selfstarter.validateEmail()
+      Selfstarter.validateEmailAndPassword()
     # The first time they type in their email, we don't want it to throw a validation error
     $("#email").change ->
       Selfstarter.firstTime = false
+
+    $("#password").bind "textchange", ->
+      Selfstarter.validateEmailAndPassword()
+    $("#password").bind "hastext", ->
+      Selfstarter.validateEmailAndPassword()
+    $("#password").change ->
+      Selfstarter.firstTime = false
+
+    $("#passwordConfirm").bind "textchange", ->
+      Selfstarter.validateEmailAndPassword()
+    $("#passwordConfirm").bind "hastext", ->
+      Selfstarter.validateEmailAndPassword()
+    $("#passwordConfirm").change ->
+      Selfstarter.firstTime = false 
+
+    # After entering email, show shipping address form.
+    $("#email_next_button").on "click", ->
+      $(".email_and_next").hide()
+      $(".shipping_and_checkout").removeClass("hidden")
+      $(".shipping_and_checkout").css('display', 'block').animate
+
+    # Handle a back button press, allowing user to change email.
+    $("#shipping_back_button").on "click", ->
+      $(".shipping_and_checkout").hide()
+      $(".email_and_next").show()
 
     # init placeholder image for video
     $("#video_image").on "click", ->
