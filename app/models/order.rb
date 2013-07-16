@@ -4,7 +4,7 @@ class Order < ActiveRecord::Base
 
   # Shipping and billing information.
   attr_accessible :stripe_id, :status, :shipping, :tracking_number, :expiration, :payment_option,
-    :exp_month, :exp_year
+    :exp_month, :exp_year, :last4
 
   # Product information.
   attr_accessible :price, :name
@@ -16,7 +16,7 @@ class Order < ActiveRecord::Base
   scope :completed, where("stripe_id != ? OR stripe_id != ?", "", nil)
   self.primary_key = 'uuid'
 
-  # This is where we create our Caller Reference for Amazon Payments, and prefill some other information.
+  # Prefill some order information before authenticating with Stripe.
   def self.prefill!(options = {})
     @order                = Order.new
     @order.name           = options[:name]
@@ -24,28 +24,28 @@ class Order < ActiveRecord::Base
     @order.price          = options[:price]
     @order.number         = Order.next_order_number
     @order.payment_option = options[:payment_option] if !options[:payment_option].nil?
+    @order.address_one    = options[:line1]
+    @order.address_two    = options[:line2]
+    @order.city           = options[:city]
+    @order.state          = options[:state]
+    @order.zip            = options[:zip]
+    @order.phone          = options[:phone]
+    @order.country        = options[:country]
     @order.save!
 
     @order
   end
 
-  # After authenticating with Amazon, we get the rest of the details
+  # After authenticating with Stripe, store the exp month and year and last CC digits.
   def self.postfill!(uuid, customer)
 
     @order = Order.find_by_uuid!(uuid)
-    @order.stripe_id         = customer.id
     if @order.stripe_id.present?
-      @order.address_one     = customer[:active_card][:address_line1]
-      @order.address_two     = customer[:active_card][:address_line2]
-      @order.city            = customer[:active_card][:address_city]
-      @order.state           = customer[:active_card][:address_state]
-      @order.zip             = customer[:active_card][:address_zip]
-      @order.phone           = customer[:active_card][:phone]
-      @order.country         = customer[:active_card][:address_country]
+      @order.stripe_id         = customer.id
       @order.exp_month       = customer[:active_card][:exp_month]
       @order.exp_year        = customer[:active_card][:exp_year]
+      @order.last4           = customer[:active_card][:last4]
       @order.save!
-
       @order
     end
   end

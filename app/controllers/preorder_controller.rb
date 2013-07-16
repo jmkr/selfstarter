@@ -14,6 +14,9 @@ class PreorderController < ApplicationController
   end
 
   def prefill
+
+    # Get the current_user if one is already sign-in. If not, create a 
+    # new user with the given parameters.
     if current_user
       @user = current_user
     elsif !params[:email].blank? && !params[:password].blank? && params[:password] == params[:passwordConfirm]
@@ -32,12 +35,29 @@ class PreorderController < ApplicationController
       price = Settings.price
     end
 
-    @order = Order.prefill!(:name => Settings.product_name, :price => price, :user_id => @user.id, :payment_option => payment_option)
+    puts "name?? #{params[:name]}"
+    puts "state?? #{params[:state ]}"
+
+
+    # Validate the Shipping data from the form.
+    if !params[:name].blank? && !params[:address1].blank? && !params[:city].blank? && !params[:state].blank? && !params[:zip].blank?
+    else
+      flash[:error] = "Please fill out all required fields"
+      redirect_to preorder_checkout_path
+      return
+    end
+
+    @order = Order.prefill!(
+      :name => Settings.product_name, 
+      :price => price, 
+      :user_id => @user.id, 
+      :payment_option => payment_option
+    )
 
     # Get the credit card details submitted by the form
     token = params[:stripeToken]
     
-    # Create a Customer
+    # Create a Customer object via Stripe.
     @customer = Stripe::Customer.create(
         :card => params[:stripeToken],
         :plan => "craftcrate-monthly",
@@ -45,7 +65,9 @@ class PreorderController < ApplicationController
       )
 
     unless @customer.nil?
-      @order = Order.postfill!(@order.uuid, @customer)
+      Order.postfill!(@order.uuid, @customer)
+    else
+      redirect_to :action => :prefill, flash[:notice] => "Unable to authorize credit card"
     end
 
     if @customer.present?
