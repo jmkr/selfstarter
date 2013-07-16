@@ -7,13 +7,21 @@
   }
   li 
   {
+    display: inline-block;
+    padding-right:14px;
     margin-bottom: 10px;
   }
   a 
   {
     font-size: 18px;
-    color: #525252;
-    font-family: $primary_font, $secondary_font, $tertiary_font;
+    color: #6C6C6C;
+    font-family: "proxima-nova", $primary_font, $secondary_font, $tertiary_font;
+    font-weight: 400;
+    text-decoration: none;
+  }
+  a:hover
+  {
+    color: #BBB;
   }
   p 
   {

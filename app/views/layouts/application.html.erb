@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title><%= Settings.product_name %></title>
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "application" %>
-    <script type="text/javascript" src="//use.typekit.net/dvh8njk.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-  </head>
-  <!--[if lt IE 9 ]><body class="lt-ie9"><![endif]-->
-  <!--[if (gt IE 9)|!(IE)]><!--> <body><!--<![endif]-->
-    <%= render 'preorder/header' %>
-    <%= yield %>
-    <%= render 'preorder/footer' %>
-  </body>
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<title><%= Settings.product_name %></title>
+	<%= stylesheet_link_tag    "application" %>
+	<%= javascript_include_tag "application" %>
+	<script type="text/javascript" src="//use.typekit.net/dvh8njk.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</head>
+<!--[if lt IE 9 ]><body class="lt-ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <body><!--<![endif]-->
+<%= render 'preorder/header' %>
+<%= render 'layouts/flash_messages' %>
+<%= yield %>
+<%= render 'preorder/footer' %>
+</body>
 </html>

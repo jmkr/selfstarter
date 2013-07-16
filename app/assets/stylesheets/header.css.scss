@@ -1,15 +1,57 @@
-#lockitron_header
+.top_bar 
 {
-  width: 186px;
-  float:none;
-  border: none;
-  margin: 0 auto;
-  a
+  height: 40px;
+  background-color: #F8F8F8;
+  width: 100%;
+  #user_nav
   {
-    border: none !important;
-    font-size: inherit !important;
+    float: right;
+    font-size: 16px;
+    margin-top: 8px;
+    margin-right: 140px;
+    //color: #DDD;
+    ul
+    {
+      li:first-of-type{
+        padding-right: 20px;
+      }
+
+      li
+      {
+        display: inline-block;        
+        a
+        {
+          font-family: "freight-sans-pro", $primary_font, $secondary_font, $tertiary_font;
+          color :#6C6C6C;
+          text-decoration: none;
+          font-weight: 600;
+          text-shadow: none;
+        }
+        a:hover
+        {
+          text-decoration: none;
+          color: #BBB;
+        }
+      }
+    }
   }
 }
+
+.demo-headline 
+{
+  padding: 60px 0 120px;
+  h1.demo-logo 
+  {
+    font-family: "freight-sans-pro", $primary_font, $secondary_font, $tertiary_font;
+    font-weight: 500;
+    width: 100%;
+    a
+    {
+      color: #34495e;
+    }
+  }
+}
+
 #header 
 {
   width: 100%;
@@ -26,35 +68,10 @@
   }
 }
 
-#user_nav
-{
-  float: right;
-  font-size: 16px;
-  margin-top: 8px;
-  margin-right: 160px;
-  
-  a
-  {
-    color: #525252;
-  }
-
-  .login_button
-  {
-    font-family: "freight-sans-pro";
-    font-weight: 800;
-    color: #FFFFFF;
-    background-color: #dd604a;
-  }
-
-  .login_button:hover
-  {
-    background-color: rgb(223, 135, 120);
-    text-decoration: none;
-  }
-}
-
 #craft_nav
 {
+  font-size: 30px;
+  margin-bottom: 14px;
   ul
   {
     text-align: center;
@@ -69,29 +86,35 @@
     li.item
     {      
       padding: 0px 30px;
-
-      a
+      h3
       {
-        font-family: "felt-tip-woman",cursive;
-        -webkit-transition: color .4s ease;
-        -moz-transition: color .4s ease;
-        transition: color .4s ease;
-      }
 
-      a:hover
-      {
-        text-decoration: none;
-        color: #dd604a;
+        a
+        {
+          color :#6C6C6C;
+          font-weight: 400;
+          font-family: "proxima-nova", $primary_font, $secondary_font, $tertiary_font;
+          -webkit-transition: color .4s ease;
+          -moz-transition: color .4s ease;
+          transition: color .4s ease;
+          text-decoration: none;
+        }
+
+        a:hover
+        {
+          text-decoration: none;
+          color: #BBB;
+        }
       }
     }
 
     li.vertical_bar
     {
-      background: #B6B6B6;
+      background: #C4C4C4;
       width: 1px;
       height: 30px;
       padding-top: -3px;
-      margin-bottom: -6px;
+      margin-bottom: -10px;
     }
   }
 }
