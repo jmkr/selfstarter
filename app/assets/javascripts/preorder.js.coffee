@@ -9,7 +9,7 @@ Selfstarter =
     else
       $("#email").addClass("highlight") unless Selfstarter.firstTime
       $("#email_next_button").addClass("disabled") unless $("#email_next_button").hasClass("disabled")
-  validatePassword: ->
+  validateShippingForm: ->
     console.log("validating password")
     if $("#password").val() != $("#passwordConfirm").val()
       $("#email_next_button").addClass("disabled") unless $("#email_next_button").hasClass("disabled")
@@ -54,6 +54,10 @@ Selfstarter =
     $("#shipping_back_button").on "click", ->
       $(".shipping_and_checkout").hide()
       $(".email_and_next").show()
+
+    # Handle a back button press, allowing user to change email.
+    #$("#amazon_button").on "click", ->
+    #  Selfstarter.validateShippingForm()
 
     # init placeholder image for video
     $("#video_image").on "click", ->

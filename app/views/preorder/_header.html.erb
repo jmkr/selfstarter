@@ -1,28 +1,46 @@
-<div id="header">
-  <div class="wrapper clearfix">
-    <div id="user_nav">
+<div class="top_bar">
+  <div id="user_nav">
+    <ul>
       <% if user_signed_in? %>
-      Hi, <%= link_to current_user.email, users_settings_path %>
-      <%= link_to "LOGOUT", destroy_user_session_path, :method => :delete, :class => "btn login_button" %>
+      <li>
+        <%= link_to "ACCOUNT", users_settings_path %>
+      </li>
+
+      <li>
+        <%= link_to "LOGOUT", destroy_user_session_path, :method => :delete, :class => "" %>
+      </li>
       <% else %>
-      <%= link_to "LOGIN", new_user_session_path, :class => "btn login_button" %>
+      <li>
+        <%= link_to "LOGIN", new_user_session_path, :class => "" %>
+      </li>
       <% end %>
-    </div>
-  <h1 id="lockitron_header"><a href="/"><%= Settings.product_name %></a></h1>
+    </ul>
   </div>
 </div>
-<div id="craft_nav">
-  <ul>
-    <li class="item">
-      <h3><a href="/">The Crate</a></h3>
-    </li>
-    <li class="vertical_bar"></li>
-    <li class="item">
-      <h3><a href="/">The Community</a></h3>
-    </li>
-    <li class="vertical_bar"></li>
-    <li class="item">
-      <h3><a href="/">The Creators</a></h3>
-    </li>
-  </ul>
+<div class="container">
+  <div class="wrapper clearfix">
+    <div class="demo-headline">
+      <h1 class="demo-logo">
+        <a href="/">
+          <%= Settings.product_name %>
+        </a>
+      </h1>
+    </div>
+  </div>
+
+  <div id="craft_nav">
+    <ul>
+      <li class="item">
+        <h3><a href="/">The Crate</a></h3>
+      </li>
+      <li class="vertical_bar"></li>
+      <li class="item">
+        <h3><a href="/">DIY</a></h3>
+      </li>
+      <li class="vertical_bar"></li>
+      <li class="item">
+        <h3><a href="/">Inspiration</a></h3>
+      </li>
+    </ul>
+  </div>
 </div>
