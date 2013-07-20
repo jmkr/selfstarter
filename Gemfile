@@ -47,3 +47,6 @@ gem 'figaro'
 
 # New Relic
 gem 'newrelic_rpm'
+
+# SSL Enforcer
+gem 'rack-ssl-enforcer'
