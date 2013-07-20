@@ -44,3 +44,6 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 # Figaro for configuring env variables
 gem 'figaro'
+
+# New Relic
+gem 'newrelic_rpm'
