@@ -6,7 +6,6 @@ class PreorderController < ApplicationController
 
   def checkout
 
-    puts "HERE!"
     if @user = current_user
       puts "current user?? #{@user.email}"
     end

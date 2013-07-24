@@ -20,7 +20,8 @@
         :required => "required", :id => "email", :disabled => current_user %>
         <%= password_field_tag "password", nil, :placeholder => "Password", :disabled => current_user, :hidden => current_user %>
         <%= password_field_tag "passwordConfirm", nil, :placeholder => "Confirm Password", :disabled => current_user, :hidden => current_user %>
-        <input value="Next" class="blue_button disabled" id="email_next_button">
+        <br />
+        <input value="Next" class="btn btn-info disabled" id="email_next_button">
       </div>
 
       <!-- The shipping info section -->
