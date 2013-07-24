@@ -26,15 +26,16 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'shoulda'
+  gem 'debugger'
 end
 
-# jQuery
+# jQuery, obvi
 gem 'jquery-rails'
 
 # Configuration File
 gem 'rails_config'
 
-# Rails Admiin
+# Rails Admin
 gem 'rails_admin'
 
 gem "devise"
