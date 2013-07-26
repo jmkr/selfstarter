@@ -5,7 +5,6 @@ class PreorderController < ApplicationController
   end
 
   def checkout
-    debugger
   end
 
   def prefill
