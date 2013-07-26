@@ -1,7 +1,8 @@
 class Order < ActiveRecord::Base
   # Address information
   attr_accessible :address_one, :address_two, :city, :country, :number, :state, :zip, :phone
-
+  validates :address_one, :city, :state, :zip, :name, :price, :user_id, presence: true
+  
   # Shipping and billing information.
   attr_accessible :stripe_id, :status, :shipping, :tracking_number, :expiration, :payment_option,
     :exp_month, :exp_year, :last4
@@ -9,53 +10,23 @@ class Order < ActiveRecord::Base
   # Product information.
   attr_accessible :price, :name
 
+
   attr_readonly :uuid
   before_validation :generate_uuid!, :on => :create
   belongs_to :user
-  belongs_to :payment_option
+  belongs_to :payment_option #we gonna use this? we should
   scope :completed, where("stripe_id != ? OR stripe_id != ?", "", nil)
   self.primary_key = 'uuid'
 
-  # Prefill some order information before authenticating with Stripe.
-  def self.prefill!(options = {})
-    @order                = Order.new
-    @order.name           = options[:name]
-    @order.user_id        = options[:user_id]
-    @order.price          = options[:price]
-    @order.number         = Order.next_order_number
-    @order.payment_option = options[:payment_option] if !options[:payment_option].nil?
-    @order.address_one    = options[:line1]
-    @order.address_two    = options[:line2]
-    @order.city           = options[:city]
-    @order.state          = options[:state]
-    @order.zip            = options[:zip]
-    @order.phone          = options[:phone]
-    @order.country        = options[:country]
-    @order.save!
 
-    @order
-  end
-
-  # After authenticating with Stripe, store the exp month and year and last CC digits.
-  def self.postfill!(uuid, customer)
-
-    @order = Order.find_by_uuid!(uuid)
-    if @order.stripe_id.present?
-      @order.stripe_id         = customer.id
-      @order.exp_month       = customer[:active_card][:exp_month]
-      @order.exp_year        = customer[:active_card][:exp_year]
-      @order.last4           = customer[:active_card][:last4]
-      @order.save!
-      @order
-    end
-  end
-
-  def self.next_order_number
-    if Order.count > 0
-      Order.order("number DESC").limit(1).first.number.to_i + 1
-    else
-      1
-    end
+  # After authenticating with Stripe
+  def postfill!(customer)
+    self.stripe_id  = customer.id
+    self.exp_month  = customer.active_card.exp_month
+    self.exp_year   = customer.active_card.exp_year
+    self.last4      = customer.active_card.last4
+    self.save!
+    self
   end
 
   def generate_uuid!
@@ -87,5 +58,4 @@ class Order < ActiveRecord::Base
     end 
   end
 
-  validates_presence_of :name, :price, :user_id
 end

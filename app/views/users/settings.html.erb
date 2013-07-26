@@ -1,8 +1,11 @@
 <div class="gray_background">
   <div class="wrapper clearfix">
     <div class="main_content">
-      <h4>Account Settings</h4>
-      <%= link_to "Orders", users_orders_path %>
+      <h4>Account Info</h4>
+	      <p><%= link_to "Orders", users_orders_url %></p>
+	      <p>
+	      	<%= link_to "Account Settings", edit_user_registration_url %>
+	      </p>
     </div>
   </div>
 </div>

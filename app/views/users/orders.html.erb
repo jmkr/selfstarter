@@ -2,12 +2,12 @@
   <div class="wrapper clearfix">
     <div class="main_content">
       <h1>Orders</h1>
-      <% for order in @orders %>
-      <tr>
-        <td><%= order.name %></td>
-        <td><%= link_to order.stripe_id %></td>
-        <td><%= order.created_at.to_s(:short) %></td>
-      </tr>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.name %></td>
+          <td><%= link_to order.stripe_id %></td>
+          <td><%= order.created_at.to_s(:short) %></td>
+        </tr>
       <% end %>
     </div>
   </div>

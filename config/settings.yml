@@ -36,7 +36,7 @@ video_embed_url: "http://www.youtube.com/v/x_maXaIt2dE"
 # NOTE: this only works for youtube video at the moment.  If its not for youtube, then just leave this property blank
 use_video_placeholder: true
 
-price: 	29
+price:  29
 
 # if use_payment_options is set to true, then a set of radio buttons will be displayed with various payment options.
 # There is a PaymentOption model for storing info about payment options.  To set up your payment options you should
