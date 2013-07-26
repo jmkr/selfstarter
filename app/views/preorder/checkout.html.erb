@@ -16,10 +16,10 @@
       <%= form_tag "/preorder/prefill", :id => "checkout" do %>
       <!-- The email and password section -->
       <div class="email_and_next">
-        <%= email_field_tag "email", nil, :placeholder => "#{if current_user then current_user.email end || 'Email address'}", 
+        <%= email_field_tag "user[email]", nil, :placeholder => "#{if current_user then current_user.email end || 'Email address'}", 
         :required => "required", :id => "email", :disabled => current_user %>
-        <%= password_field_tag "password", nil, :placeholder => "Password", :disabled => current_user, :hidden => current_user %>
-        <%= password_field_tag "passwordConfirm", nil, :placeholder => "Confirm Password", :disabled => current_user, :hidden => current_user %>
+        <%= password_field_tag "user[password]", nil, :placeholder => "Password", :disabled => current_user, :hidden => current_user %>
+        <%= password_field_tag "user[passwordConfirm]", nil, :placeholder => "Confirm Password", :disabled => current_user, :hidden => current_user %>
         <br />
         <input value="Next" class="btn btn-info disabled" id="email_next_button">
       </div>
@@ -29,7 +29,7 @@
         <div class="name control_group">
           <p>Name *</p>
           <div class="controls">
-            <%= text_field_tag "name", nil, :id => "name", :placeholder => "Name", :required => "required" %>
+            <%= text_field_tag "order[name]", nil, :id => "name", :placeholder => "Name", :required => "required" %>
           </div>
         </div>
         <div class="company control_group">
@@ -41,25 +41,25 @@
         <div class="address1 control_group">
           <p>Address 1 *</p>
           <div class="controls">
-            <%= text_field_tag "address1", nil, :id => "address1", :placeholder => "Address 1", :required => "required" %>
+            <%= text_field_tag "order[address_one]", nil, :id => "address1", :placeholder => "Address 1", :required => "required" %>
           </div>
         </div>
         <div class="address2 control_group">
           <p>Address 2</p>
           <div class="controls">
-            <%= text_field_tag "address2", nil, :id => "address2", :placeholder => "Address 2" %>
+            <%= text_field_tag "order[address_two]", nil, :id => "address2", :placeholder => "Address 2" %>
           </div>
         </div>
         <div class="city control_group">
           <p>City *</p>
           <div class="controls">
-            <%= text_field_tag "city", nil, :id => "city", :placeholder => "City", :required => "required" %>
+            <%= text_field_tag "order[city]", nil, :id => "city", :placeholder => "City", :required => "required" %>
           </div>
         </div>
         <div class="state control_group">
           <p>State *</p>
           <div class="controls">
-            <select id="state" name="state" class="statesOption">
+            <select id="state" name="order[state]" class="statesOption">
               <option value="">Select a State</option>
               <option value="AL">Alabama</option>
               <option value="AK">Alaska</option>
@@ -118,56 +118,57 @@
         <div class="zip control_group">
           <p>Zip Code *</p>
           <div class="controls">
-            <%= text_field_tag "zip", nil, :id => "zip", :placeholder => "Zip Code", :required => "required" %>  
+            <%= text_field_tag "order[zip]", nil, :id => "zip", :placeholder => "Zip Code", :required => "required" %>  
           </div>
         </div>
         <div class="phone control_group">
           <p>Phone</p>
           <div class="controls">
-            <%= text_field_tag "phone", nil, :id => "phone", :placeholder => "Phone" %>
+            <%= text_field_tag "order[phone]", nil, :id => "phone", :placeholder => "Phone" %>
           </div>
         </div>
         <span class="payment-errors"></span>
         <%= hidden_field_tag "preorder", true %>
-        <%= hidden_field_tag "quantity", params[:quantity] %>
+        <%= hidden_field_tag "quantity", 1 %>
         <div class="control_buttons">
           <div class="back">
             <input value="Back" class="blue_button" id="shipping_back_button">
           </div>
           <div class="next">
-            <%= submit_tag "Checkout", :class => "blue_button", :id => "amazon_button" %>
+            <%= submit_tag "Checkout", :class => "blue_button", :id => "stripe_button" %>
           </div>
         </div>
+
         <!-- MeSsY StUfF -->
         <script src="https://checkout.stripe.com/v2/checkout.js" type="text/javascript"></script>
         <script>
-        validateShippingForm = function() {
-          if (!$('#name').val() || !$('#address1').val() || !$('#city').val() || $('#state').val() == "" || !$('#zip').val()) {
-            return false;
+          validateShippingForm = function() {
+            if (!$('#name').val() || !$('#address1').val() || !$('#city').val() || $('#state').val() == "" || !$('#zip').val()) {
+              return false;
+            }
           }
-        }
 
-        $('#amazon_button').click(function(){
-          if (validateShippingForm() != false) {
-            console.log("Stripe");
-            var token = function(res){
-              var $input = $('<input type=hidden name=stripeToken />').val(res.id);
-              $('form').append($input).submit();
-            };
-  
-            StripeCheckout.open({
-              key:         '<%= Rails.configuration.stripe[:publishable_key]%>',
-              amount:      <%= Settings.price * 100 %>,
-              currency:    'usd',
-              name:        'CraftCrate',
-              description: 'A monthly subscription',
-              panelLabel:  'Checkout',
-              token:       token
-            });
-  
-            return false;
-          }
-        });
+          $('#stripe_button').click(function(){
+            if (validateShippingForm() != false) {
+              console.log("Stripe");
+              var token = function(res){
+                var $input = $('<input type=hidden name=stripeToken />').val(res.id);
+                $('form').append($input).submit();
+              };
+    
+              StripeCheckout.open({
+                key:         '<%= Rails.configuration.stripe[:publishable_key] %>',
+                amount:      <%= Settings.price * 100 %>,
+                currency:    'usd',
+                name:        'CraftCrate',
+                description: 'A monthly subscription',
+                panelLabel:  'Checkout',
+                token:       token
+              });
+    
+              return false;
+            }
+          });
         </script>
       </div>
       <% end %>
