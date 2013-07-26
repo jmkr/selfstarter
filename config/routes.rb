@@ -1,4 +1,5 @@
 Selfstarter::Application.routes.draw do
+  root :to => 'preorder#index'
 
   get "users/orders"
   get "users/settings"
@@ -6,7 +7,7 @@ Selfstarter::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
-  root :to => 'preorder#index'
+
   match '/preorder'               => 'preorder#index'
   get 'preorder/checkout'
   match '/preorder/share/:uuid'   => 'preorder#share', :via => :get
