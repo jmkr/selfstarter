@@ -4,8 +4,4 @@ class UsersController < ApplicationController
   def settings
   end
 
-  def orders
-    @orders = current_user.orders
-    render :orders
-  end
 end

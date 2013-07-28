@@ -1,13 +1,15 @@
-class PreorderController < ApplicationController
+class OrdersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :ipn
 
   def index
+    @orders = current_user.orders
+    render :index
   end
 
-  def checkout
+  def new
   end
 
-  def prefill
+  def create
  
     #why is name in the order the current_user's name?
     #params[:order][:name] = Settings.product_name
@@ -42,6 +44,9 @@ class PreorderController < ApplicationController
   #   @order = Order.find_by_uuid(params[:uuid])
   # end
 
-  # def ipn
-  # end
+  def cancel
+    #hit stripe to cancel the billing
+    #update our db
+    redirect_to root_url
+  end
 end
