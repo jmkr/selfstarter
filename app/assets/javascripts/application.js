@@ -16,8 +16,6 @@
 //= require jquery-ui
 //= require jquery.details
 //= require jquery.textchange
-//= require bootstrap-select
-//= require bootstrap-switch
 //= require_tree .
 
 // Some general UI pack related JS
@@ -43,9 +41,6 @@ String.prototype.repeat = function(num) {
     $(".todo li").click(function() {
         $(this).toggleClass("todo-done");
     });
-
-    // Custom Select
-    $("select[name='herolist']").selectpicker({style: 'btn-primary', menuStyle: 'dropdown-inverse'});
 
     // Tooltips
     $("[data-toggle=tooltip]").tooltip("show");
@@ -82,9 +77,6 @@ String.prototype.repeat = function(num) {
       e.preventDefault();
     });
 
-    // Switch
-    $("[data-toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwitch();
-    
   });
   
 })(jQuery);
