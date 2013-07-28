@@ -6,15 +6,15 @@
         All of your payment information will be secured and stored with <a href="https://stripe.com/">Stripe</a>.
         <br />
         <br />
-        <!-- Payment Option stuff. -->
-        <!--<% if Settings.use_payment_options %>
+<!--         <% if Settings.use_payment_options %>
         Select a payment option and enter your email address below.
         <% else %>
         Enter your email address below.
-        <% end %>-->
+        <% end %> -->
       </p>
 
-      <%= form_tag "/preorder/prefill", :id => "checkout" do %>
+      <%= form_tag "/orders/create", :id => "checkout" do %>
+     
       <!-- The shipping info section -->
       <div class="shipping_and_checkout">
         <div class="name control_group">
@@ -155,6 +155,6 @@
       <% end %>
     </div>
 
-    <%= render 'preorder/checkout/sidebar' %>
+    <%= render 'orders/checkout/sidebar' %>
   </div>
 </div>
