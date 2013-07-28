@@ -1,4 +1,4 @@
-module PreorderHelper
+module OrdersHelper
   def like_button(width = 70, show_faces = false)
     raw "<div class=\"fb-like\" data-send=\"false\" data-width=\"#{width}\" data-layout=\"box_count\" data-show-faces=\"true\"></div>"
   end

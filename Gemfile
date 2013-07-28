@@ -8,6 +8,9 @@ gem 'json', '~> 1.7.7'
 group :development do
   gem 'pg'
   gem 'pry-rails'
+  gem 'letter_opener'
+  gem 'binding_of_caller'
+  gem 'better_errors'
 end
 
 group :production do
@@ -29,24 +32,15 @@ group :development, :test do
   gem 'debugger'
 end
 
-# jQuery, obvi
 gem 'jquery-rails'
-
-# Configuration File
 gem 'rails_config'
-
-# Rails Admin
 gem 'rails_admin'
-
 gem "devise"
-
-# Stripe
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 # Figaro for configuring env variables
 gem 'figaro'
 
-# New Relic
 gem 'newrelic_rpm'
 
 # SSL Enforcer

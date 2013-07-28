@@ -1,0 +1,19 @@
+<div class="gray_background">
+  <div class="wrapper clearfix">
+    <div class="main_content">
+      <h1>Orders</h1>
+      <table>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.name %></td>
+            <td><%= order.stripe_id %></td>
+            <td><%= order.created_at.to_s(:short) %></td>
+            <td><%= link_to "Cancel Subscription",
+                            cancel_order_url(order),
+                            class: "btn btn-danger" %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
