@@ -6,36 +6,21 @@
         All of your payment information will be secured and stored with <a href="https://stripe.com/">Stripe</a>.
         <br />
         <br />
-        <% if Settings.use_payment_options %>
+        <!-- Payment Option stuff. -->
+        <!--<% if Settings.use_payment_options %>
         Select a payment option and enter your email address below.
         <% else %>
         Enter your email address below.
-        <% end %>
+        <% end %>-->
       </p>
 
       <%= form_tag "/preorder/prefill", :id => "checkout" do %>
-      <!-- The email and password section -->
-      <div class="email_and_next">
-        <%= email_field_tag "user[email]", nil, :placeholder => "#{if current_user then current_user.email end || 'Email address'}", 
-        :required => "required", :id => "email", :disabled => current_user %>
-        <%= password_field_tag "user[password]", nil, :placeholder => "Password", :disabled => current_user, :hidden => current_user %>
-        <%= password_field_tag "user[passwordConfirm]", nil, :placeholder => "Confirm Password", :disabled => current_user, :hidden => current_user %>
-        <br />
-        <input value="Next" class="btn btn-info disabled" id="email_next_button">
-      </div>
-
       <!-- The shipping info section -->
-      <div class="shipping_and_checkout hidden">
+      <div class="shipping_and_checkout">
         <div class="name control_group">
           <p>Name *</p>
           <div class="controls">
             <%= text_field_tag "order[name]", nil, :id => "name", :placeholder => "Name", :required => "required" %>
-          </div>
-        </div>
-        <div class="company control_group">
-          <p>Company</p>
-          <div class="controls">
-            <%= text_field_tag "company", nil, :id => "company", :placeholder => "Company" %>
           </div>
         </div>
         <div class="address1 control_group">
@@ -131,15 +116,12 @@
         <%= hidden_field_tag "preorder", true %>
         <%= hidden_field_tag "quantity", 1 %>
         <div class="control_buttons">
-          <div class="back">
-            <input value="Back" class="blue_button" id="shipping_back_button">
-          </div>
-          <div class="next">
+          <div class="order_button">
             <%= submit_tag "Checkout", :class => "blue_button", :id => "stripe_button" %>
           </div>
         </div>
 
-        <!-- MeSsY StUfF -->
+        <!-- Stripe Checkout.js -->
         <script src="https://checkout.stripe.com/v2/checkout.js" type="text/javascript"></script>
         <script>
           validateShippingForm = function() {
@@ -150,7 +132,6 @@
 
           $('#stripe_button').click(function(){
             if (validateShippingForm() != false) {
-              console.log("Stripe");
               var token = function(res){
                 var $input = $('<input type=hidden name=stripeToken />').val(res.id);
                 $('form').append($input).submit();
