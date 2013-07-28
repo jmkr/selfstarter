@@ -9,17 +9,10 @@
 .craft_bg
 {
   background-image: url(image_path("tassels.png"));
-  //-webkit-background-size: cover;
-  //-moz-background-size: cover;
-  //-o-background-size: cover;
-  //background-size: cover;
-  //width: 100%;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  -ms-behavior: url(/assets/background_size/backgroundsize.htc);
-  //padding-bottom: 38.57%;
   position: relative;
   overflow: hidden;
 
@@ -28,7 +21,6 @@
     height: 500px;
     .craft_overlay
     {
-      //float: right;
       width: 400px;
       background: rgba(255,255,255,.8);
       height: 100%;
@@ -66,8 +58,6 @@
   }
   
 }
-
-
 
 #tweet_button
 {
