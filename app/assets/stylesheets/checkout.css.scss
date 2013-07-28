@@ -18,20 +18,16 @@
     {
       display:inline;
       margin-top: 20px;
-      div.back
-      {
-        float: left;
-      }
-      div.next
+      div.order_button
       {
         float: right;
+        margin-right: 90px;
       }
     }
     div.shipping_and_checkout
     {
       div.control_group
       {
-        /*text-align: right;*/
         p 
         {
           padding-top: 14px;
@@ -51,31 +47,6 @@
           }
         }
       }
-    }
-
-    #email, #password, #passwordConfirm
-    {
-      padding: 15px;
-      border-radius: 10px;
-      border: 1px solid #CCC;
-      width: 350px;
-      outline: none;
-    }
-    .invalid
-    {
-      border: 1px solid orange;
-    }
-
-    #email_next_button, #shipping_back_button
-    {
-      width: 80px;
-      text-align: center;
-    }
-    #amazon_button, #email_next_button, #shipping_back_button
-    {
-      margin-top: 5px;
-      padding: 15px;
-      border: none;
     }
   }
 }
@@ -108,10 +79,6 @@
         padding-bottom: 90px;
       }
     }
-  }
-  #amazon_button
-  {
-    display: inline !important;
   }
   div.payment_options
   {
