@@ -17,4 +17,5 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :remember_me, :encrypted_password #,:password_confirmation,
 
   has_many :orders
+  has_many :shipments, through: :orders
 end
