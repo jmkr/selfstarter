@@ -3,26 +3,35 @@ class Shipment < ActiveRecord::Base
 
   validates :date, :order_id, :method, presence: true
 
+
   belongs_to :order
 
 
   ## Method for the admin to run to prep the monthly shipments
-  	# May want to add a fail safe
-  	# Only create a shipment if no shipments for that order in this month
-  	# Fail safe if create! errors? Use .new and .save! instead
 
   def self.create_monthly_shipments
   	Order.all.each do |order|
   		current_date = Time.new(Time.now.year, Time.now.month)
-  		#month might act up if it is in the DB as ex. '08' for Aug
   		order_date = Time.new(order.exp_year, order.exp_month)
-  		
-  		if exp_date >= current_date
-				order.shipments.create!(date: Time.now,
-																method: "ground",
-																total: order.price)
+      repeat = false
+
+      order.shipments.each do |shipment|
+        if shipment.date == current_date
+          repeat = true
+        end
+      end
+
+  		if exp_date >= current_date && !repeat
+				new_shipment = order.shipments.create!(date: current_date,
+																                method: "ground",
+                																total: order.price)
+        if new_shipment.save!
+          puts "shipment created for #{order}"
+        else
+          puts "there was an error creating a shipment for #{order}"
+        end
   		end
+
   	end
   end
-
 end
