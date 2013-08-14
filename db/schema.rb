@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130627065833) do
+ActiveRecord::Schema.define(:version => 20130809014629) do
 
   create_table "orders", :id => false, :force => true do |t|
     t.string   "stripe_id"
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(:version => 20130627065833) do
     t.integer  "limit"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "shipments", :force => true do |t|
+    t.integer  "order_id"
+    t.datetime "date"
+    t.decimal  "total"
+    t.string   "method"
+    t.string   "tracking"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
