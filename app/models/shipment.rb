@@ -8,6 +8,7 @@ class Shipment < ActiveRecord::Base
 
 
   ## Method for the admin to run to prep the monthly shipments
+  # Add a button to rails admin to run monthly or run on a date?
 
   def self.create_monthly_shipments
   	Order.all.each do |order|

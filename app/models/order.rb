@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   # Address information
   attr_accessible :address_one, :address_two, :city, :country, :number, :state, :zip, :phone
-  validates :address_one, :city, :state, :zip, :name, :price, :user_id, presence: true
+  validates :address_one, :city, :state, :zip, :name, :price, :user_id, :exp_month, :exp_year, presence: true
   
   # Shipping and billing information.
   attr_accessible :stripe_id, :status, :shipping, :tracking_number, :expiration, :payment_option,
