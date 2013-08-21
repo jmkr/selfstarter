@@ -19,7 +19,7 @@ class Order < ActiveRecord::Base
   
   scope :completed, where("stripe_id != ? OR stripe_id != ?", "", nil)
   self.primary_key = 'uuid'
-
+  #why was the primary key reassigned?
 
   # After authenticating with Stripe
   def postfill!(customer)
@@ -27,6 +27,7 @@ class Order < ActiveRecord::Base
     self.exp_month  = customer.active_card.exp_month
     self.exp_year   = customer.active_card.exp_year
     self.last4      = customer.active_card.last4
+    self.status     = "active"
     self.save!
     self
   end
