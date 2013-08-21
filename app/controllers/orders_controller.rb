@@ -46,6 +46,8 @@ class OrdersController < ApplicationController
   # end
 
   def cancel
+    @order = Order.find(params[:id])
+    @order.update_attributes(status: "canceled")
     #hit stripe to cancel the billing
     #update our db
     redirect_to root_url

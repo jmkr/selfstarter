@@ -22,7 +22,7 @@ class Shipment < ActiveRecord::Base
         end
       end
 
-  		if exp_date >= current_date && !repeat
+  		if exp_date >= current_date && !repeat && order.status == "active"
 				new_shipment = order.shipments.create!(date: current_date,
 																                method: "ground",
                 																total: order.price)
