@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :ipn
+  before_filter :authenticate_user!
 
   def index
     @orders = current_user.orders
@@ -11,29 +12,22 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # Redirect to Sign In if current user doesn't exist. 
-    # Need to keep track of Address/Card info they entered then redirect back to here *after* they login.
-    unless current_user.nil?
-      @order = current_user.orders.new(params[:order])
-      @order.price = Settings.price
+    @order = current_user.orders.new(params[:order])
+    @order.price = Settings.price
 
-      # Create a Customer object via Stripe.
-      customer = Stripe::Customer.create(
-          :card => params[:stripeToken],
-          :plan => "craftcrate-monthly",
-          :email => current_user.email
-        )
+    # Create a Customer object via Stripe.
+    customer = Stripe::Customer.create(
+        :card => params[:stripeToken],
+        :plan => "craftcrate-monthly",
+        :email => current_user.email
+      )
 
-      if customer
-        @order.postfill!(customer)
-        render :share
-      else
-        redirect_to :action => :create, flash[:notice] => "Unable to authorize credit card"
-      end
+    if customer
+      @order.postfill!(customer)
+      render :share
     else
-      redirect_to user_session_path
+      redirect_to :action => :create, flash[:notice] => "Unable to authorize credit card"
     end
-
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to root_url   
