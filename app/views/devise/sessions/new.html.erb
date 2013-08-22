@@ -1,9 +1,8 @@
 <div class="gray_background">
   <div class="wrapper clearfix">
+    <%= render 'layouts/flash_messages' %>
     <div class="main_content">
       <h2>Sign in</h2>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
       <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
       <div>

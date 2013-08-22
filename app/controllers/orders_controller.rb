@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :ipn
+  before_filter :authenticate_user!
 
   def index
     @orders = current_user.orders
@@ -11,15 +12,8 @@ class OrdersController < ApplicationController
   end
 
   def create
- 
-    #why is name in the order the current_user's name?
-    #params[:order][:name] = Settings.product_name
-    params[:order][:price] = Settings.price
     @order = current_user.orders.new(params[:order])
-    
-    unless @order.save
-      redirect_to :action => :prefill, flash[:notice] => "Unable to save order"
-    end
+    @order.price = Settings.price
 
     # Create a Customer object via Stripe.
     customer = Stripe::Customer.create(
@@ -32,24 +26,30 @@ class OrdersController < ApplicationController
       @order.postfill!(customer)
       render :share
     else
-      redirect_to :action => :prefill, flash[:notice] => "Unable to authorize credit card"
+      redirect_to :action => :create, flash[:notice] => "Unable to authorize credit card"
     end
-
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    redirect_to root_url    
+    redirect_to root_url   
   end
 
-  # def share
-  #   #does anyone ever go directly to share?... this is never used
-  #   @order = Order.find_by_uuid(params[:uuid])
-  # end
-
+  # Cancel's a user's subscription with the given Stripe customer id. Shows a flash upon success or failure.
   def cancel
-    @order = Order.find(params[:id])
-    @order.update_attributes(status: "canceled")
-    #hit stripe to cancel the billing
-    #update our db
-    redirect_to root_url
+    if @order = Order.find(params[:id])
+      cu = Stripe::Customer.retrieve(@order.stripe_id)
+      if success = cu.cancel_subscription
+        if success.status == "canceled"
+          @order.update_attributes(status: "canceled")
+          flash[:success] = "Subscription successfully canceled."
+          redirect_to :action => :index
+        end
+      end
+    else
+      flash[:error] = "Unable to cancel order."
+      redirect_to :action => :index
+    end
+  rescue Stripe::InvalidRequestError => e
+    flash[:error] = "Error cancelling order."
+    redirect_to :action => :index
   end
 end

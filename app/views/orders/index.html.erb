@@ -1,5 +1,6 @@
 <div class="gray_background">
   <div class="wrapper clearfix">
+    <%= render 'layouts/flash_messages' %>
     <div class="main_content">
       <h1>Orders</h1>
       <table class="table">
@@ -10,7 +11,7 @@
             <td><%= order.created_at.to_s(:short) %></td>
             <td><%= link_to "Cancel Subscription",
                             cancel_order_url(order),
-                            class: "btn btn-mini btn-danger cancel" %></td>
+                            class: "btn btn-mini btn-danger cancel #{order.status == 'canceled' ? 'disabled' : ''}" %></td>
           </tr>
         <% end %>
       </table>
