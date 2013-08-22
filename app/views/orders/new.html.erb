@@ -1,5 +1,6 @@
 <div class="gray_background">
   <div class="wrapper clearfix">
+    <%= render 'layouts/flash_messages' %>
     <div class="main_content <%= "payment_options" if Settings.use_payment_options %>">
       <h3>Check out</h3>
       <p id="checkoutHint">
