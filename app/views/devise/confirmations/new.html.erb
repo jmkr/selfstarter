@@ -1,10 +1,10 @@
 <div class="gray_background">
   <div class="wrapper clearfix">
+    <%= render 'layouts/flash_messages' %>
     <div class="main_content">
       <h3>Resend confirmation instructions</h3>
       
       <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
-        <%= devise_error_messages! %>
       
         <div><%= f.label :email %><br />
         <%= f.email_field :email, {:id => 'email'} %></div>

@@ -23,6 +23,7 @@ class Order < ActiveRecord::Base
 
   # After authenticating with Stripe
   def postfill!(customer)
+    self.price      = customer.subscription.plan.amount / 100
     self.stripe_id  = customer.id
     self.exp_month  = customer.active_card.exp_month
     self.exp_year   = customer.active_card.exp_year
