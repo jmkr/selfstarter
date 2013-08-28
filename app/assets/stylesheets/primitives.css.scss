@@ -30,7 +30,7 @@ html, body {
 }
 
 body {
-  background: $body_background;
+  /* background: $body_background; */
 }
 
 .disabled
@@ -46,17 +46,17 @@ form
 
 body, input, textarea 
 {
-  font-size: $font_size;
+  /* font-size: $font_size;
   font-family: $primary_font, $secondary_font, $tertiary_font;
   color: $text_color;
-  text-shadow: $text_shadow;
+  text-shadow: $text_shadow; */
   -webkit-font-smoothing: antialiased;
 }
 
 a 
 {
   text-decoration: none;
-  color: $link_color;
+  /* color: $link_color; */
 }
 
 a:hover 
@@ -80,7 +80,7 @@ details, summary
 summary
 {
   text-decoration: none;
-  color: $summary_color;
+  /* color: $summary_color; */
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -108,7 +108,7 @@ h1 {
   font-family: Helvetica;
   font-size: 42px;
   font-weight: bold;
-  color: $h1_color;
+  /* color: $h1_color; */
   letter-spacing: -.05em;
   float: left;
   a
@@ -124,22 +124,22 @@ h1 {
 }
 
 h2 {
-  font-family: $primary_font, $secondary_font, $tertiary_font;
+  /* font-family: $primary_font, $secondary_font, $tertiary_font; */
   font-size: 45px;
-  color: $h2_color;
+  /* color: $h2_color; */
   margin-bottom: 50px;
 }
 
 h4 {
   font-size: 36px;
-  color: $h4_color;
+  /* color: $h4_color; */
   margin-bottom: 30px;
 }
 
 h5 {
-  font-family: $primary_font, $secondary_font, $tertiary_font;
+  /* font-family: $primary_font, $secondary_font, $tertiary_font; */
   margin-bottom: 10px;
-  color: $h5_color;
+  /* color: $h5_color; */
 }
 
 .wrapper {
