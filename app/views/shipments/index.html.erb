@@ -1,0 +1,28 @@
+<div class="gray_background">
+  <div class="wrapper clearfix">
+    <%= render 'layouts/flash_messages' %>
+    <div class="main_content">
+      <h1>Shipments</h1>
+      <table class="table span9">
+        <tr>
+          <th>Name</th>
+          <th>Subscription ID</th>
+          <th>Price</th>
+          <th>Shipped</th>
+          <th>Method</th>
+          <th>Tracking</th>
+        </tr>
+        <% @shipments.each do |shipment| %>
+          <tr>
+            <td nowrap><%= @order.name %></td>
+            <td nowrap><%= @order.stripe_id %></td>
+            <td nowrap>$<%= @order.price %>0</td>
+            <td nowrap><%= shipment.created_at.strftime("%m/%d/%y") %></td>
+            <td nowrap><%= shipment.method %></td>
+            <td nowrap><%= shipment.tracking %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

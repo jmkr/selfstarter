@@ -3,24 +3,31 @@
     <%= render 'layouts/flash_messages' %>
     <div class="main_content">
       <h1>Orders</h1>
-      <table class="table">
+      <table class="table span9">
+        <tr>
+          <th>Name</th>
+          <th>Order ID</th>
+          <th>Created On</th>
+          <th>Unhappy?</th>
+        </tr>
         <% @orders.each do |order| %>
           <tr>
-            <td><%= order.name %></td>
-            <td><%= order.stripe_id %></td>
-            <td><%= order.created_at.to_s(:short) %></td>
-            <td><%= link_to "Cancel Subscription",
-                            cancel_order_url(order),
-                            class: "btn btn-mini btn-danger cancel #{order.status == 'canceled' ? 'disabled' : ''}" %></td>
+            <td nowrap><%= order.name %></td>
+            <td nowrap>
+              <%= link_to "#{order.stripe_id}",order_shipments_url(order) %>
+            </td>
+            <td nowrap>
+              <%= order.created_at.strftime("%m/%d/%y") %>
+            </td>
+            <td nowrap>
+              <%= link_to "Cancel Subscription",
+                    cancel_order_url(order),
+                    class: "btn btn-mini btn-danger cancel #{order.status == 'canceled' ? 'disabled' : ''}", 
+                    data: { confirm: "Are you sure?" }%>
+            </td>
           </tr>
         <% end %>
       </table>
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  $('.cancel').on('click', function() {
-      confirm('Are you super sure?');
-  })
-</script>
