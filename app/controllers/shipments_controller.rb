@@ -1,7 +1,8 @@
 class ShipmentsController < ApplicationController
 
 	def index
-		@shipments = Shipment.where(order_id: params[:order_id])
+		@order = Order.find(params[:order_id])
+		@shipments = @order.shipments
 	end
 
 end

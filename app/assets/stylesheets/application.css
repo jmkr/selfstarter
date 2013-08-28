@@ -11,6 +11,8 @@
  *= require_self
  *= require reset
  *= require main
+ *= require static_pages
+ * WE NEED TO FIX THIS! *= require_tree . should not error
  */
  .hidden
  {
