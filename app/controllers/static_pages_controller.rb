@@ -1,15 +1,18 @@
 class StaticPagesController < ApplicationController
 
-	def faq
+	def about
 	end
 
-	def about
+	def contact
+	end
+	
+	def crate
 	end
 
 	def diy
 	end
 
-	def crate
+	def faq
 	end
 	
 end
