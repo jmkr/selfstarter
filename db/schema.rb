@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130809014629) do
+ActiveRecord::Schema.define(:version => 20130830190612) do
 
   create_table "orders", :id => false, :force => true do |t|
     t.string   "stripe_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20130809014629) do
     t.datetime "updated_at",        :null => false
     t.integer  "payment_option_id"
     t.string   "last4"
+    t.datetime "canceled_at"
   end
 
   create_table "payment_options", :force => true do |t|
