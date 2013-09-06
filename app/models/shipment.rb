@@ -23,9 +23,10 @@ class Shipment < ActiveRecord::Base
       end
 
   		if exp_date >= current_date && !repeat && order.status == "active"
-				new_shipment = order.shipments.create!(date: current_date,
-																                method: "ground",
-                																total: order.price)
+				new_shipment = Shipment.new(  order_id: order.uuid,
+                                      date: current_date,
+																      method: "ground",
+                											total: order.price)
         if new_shipment.save!
           puts "shipment created for #{order}"
         else

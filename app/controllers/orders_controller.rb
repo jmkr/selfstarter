@@ -33,6 +33,10 @@ class OrdersController < ApplicationController
     redirect_to root_url 
   end
 
+  # def edit
+  #   #make a pre-filled form to edit shipping info
+  # end
+
   # Cancel's a user's subscription with the given Stripe customer id. Shows a flash upon success or failure.
   def cancel
     if @order = Order.find(params[:id])
