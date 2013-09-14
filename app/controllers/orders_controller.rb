@@ -57,4 +57,9 @@ class OrdersController < ApplicationController
     flash[:error] = "Error cancelling order."
     redirect_to :action => :index
   end
+
+  def show
+    @order = Order.find(params[:id])
+    render json: @order
+  end
 end

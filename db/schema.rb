@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130830190612) do
+ActiveRecord::Schema.define(:version => 20130913225530) do
 
   create_table "orders", :id => false, :force => true do |t|
     t.string   "stripe_id"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(:version => 20130830190612) do
   end
 
   create_table "shipments", :force => true do |t|
-    t.integer  "order_id"
+    t.string   "order_id"
     t.datetime "date"
     t.decimal  "total"
     t.string   "method"

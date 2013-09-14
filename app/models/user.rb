@@ -9,5 +9,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :remember_me, :password_confirmation, :remember_me
 
   has_many :orders
-  has_many :shipments, through: :orders
+  #has_many :shipments, through: :orders #doesnt work cause orders has_many shipments
+  #create custom association if needed
 end
