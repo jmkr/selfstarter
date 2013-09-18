@@ -8,6 +8,7 @@ class Shipment < ActiveRecord::Base
 
   ## Method for the admin to run to prep the monthly shipments
   # Add a button to rails admin to run monthly or run on a date?
+  # Need easy way to update tracking #s... cross ref addys?
 
   def self.create_monthly_shipments
     shipments_not_created_for = []
@@ -24,6 +25,7 @@ class Shipment < ActiveRecord::Base
       order.shipments.each do |shipment|
         if shipment.date == current_date
           puts "ERROR: A shipment for order #{order.id} has already been created this month."
+          shipments_not_created_for << order.id
           repeat = true
         end
       end
