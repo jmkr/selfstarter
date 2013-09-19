@@ -10,12 +10,17 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+// NOTE: I deleted the jquery files from the assets/js due to having the gem
+//
 //= require html5shiv-printshiv
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
-//= require jquery.details
-//= require jquery.textchange
+//= require jquery.ui.all
+// require jquery.tagsinput
+// require jquery.placeholder
+// require jquery.details
+// require jquery.textchange
+//= require bootstrap.js
 //= require_tree .
 
 // Some general UI pack related JS
