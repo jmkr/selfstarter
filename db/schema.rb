@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130913225530) do
+ActiveRecord::Schema.define(:version => 20130919042905) do
+
+  create_table "email_lists", :force => true do |t|
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "orders", :id => false, :force => true do |t|
     t.string   "stripe_id"

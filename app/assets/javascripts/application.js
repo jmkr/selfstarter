@@ -16,10 +16,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
-// require jquery.tagsinput
-// require jquery.placeholder
-// require jquery.details
-// require jquery.textchange
 //= require bootstrap.js
 //= require_tree .
 
