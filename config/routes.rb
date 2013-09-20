@@ -1,7 +1,8 @@
 Selfstarter::Application.routes.draw do
   root :to => 'root#index'
 
-  resources :orders, only: [:new, :index, :create] do
+  resources :email_lists, only: [:create]
+  resources :orders, only: [:new, :index, :create, :show] do
   	resources :shipments, only: [:index]
 
   	member do

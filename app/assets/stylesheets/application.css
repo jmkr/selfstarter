@@ -12,6 +12,7 @@
  *= require reset
  *= require main
  *= require static_pages
+ * the app this is cloned from does not have require_tree .
  * WE NEED TO FIX THIS! *= require_tree . should not error
  */
  .hidden

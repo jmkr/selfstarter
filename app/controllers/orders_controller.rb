@@ -26,12 +26,16 @@ class OrdersController < ApplicationController
       @order.postfill!(customer)
       render :share
     else
-      redirect_to :action => :create, flash[:notice] => "Unable to authorize credit card"
+      redirect_to :new, flash: { error: "Unable to authorize credit card" }
     end
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    redirect_to root_url   
+    redirect_to root_url 
   end
+
+  # def edit
+  #   #make a pre-filled form to edit shipping info
+  # end
 
   # Cancel's a user's subscription with the given Stripe customer id. Shows a flash upon success or failure.
   def cancel
@@ -39,7 +43,7 @@ class OrdersController < ApplicationController
       cu = Stripe::Customer.retrieve(@order.stripe_id)
       if success = cu.cancel_subscription
         if success.status == "canceled"
-          @order.update_attributes(status: "canceled")
+          @order.update_attributes(status: "canceled", canceled_at: Time.now)
           flash[:success] = "Subscription successfully canceled."
           redirect_to :action => :index
         end
@@ -48,8 +52,14 @@ class OrdersController < ApplicationController
       flash[:error] = "Unable to cancel order."
       redirect_to :action => :index
     end
+
   rescue Stripe::InvalidRequestError => e
     flash[:error] = "Error cancelling order."
     redirect_to :action => :index
+  end
+
+  def show
+    @order = Order.find(params[:id])
+    render json: @order
   end
 end

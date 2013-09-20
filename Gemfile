@@ -33,10 +33,12 @@ group :development, :test do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'rails_config'
 gem 'rails_admin'
 gem "devise"
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'validates_email_format_of'
 
 # Figaro for configuring env variables
 gem 'figaro'

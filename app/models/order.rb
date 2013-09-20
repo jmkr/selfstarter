@@ -1,25 +1,27 @@
 class Order < ActiveRecord::Base
+
   # Address information
   attr_accessible :address_one, :address_two, :city, :country, :number, :state, :zip, :phone
   validates :address_one, :city, :state, :zip, :name, :price, :user_id, :exp_month, :exp_year, presence: true
   
-  # Shipping and billing information.
+  # Shipping and billing information. Mostly moved to shipments...
   attr_accessible :stripe_id, :status, :shipping, :tracking_number, :expiration, :payment_option,
     :exp_month, :exp_year, :last4
 
   # Product information.
   attr_accessible :price, :name
 
-
+  #Creates the unique id before creation for slug use
   attr_readonly :uuid
   before_validation :generate_uuid!, :on => :create
+
   belongs_to :user
   belongs_to :payment_option #we gonna use this? we should
-  has_many :shipments
+  has_many :shipments, foreign_key: :order_id, primary_key: :id
+  self.primary_key = :uuid
   
+  #this adds a method Order::completed
   scope :completed, where("stripe_id != ? OR stripe_id != ?", "", nil)
-  self.primary_key = 'uuid'
-  #why was the primary key reassigned?
 
   # After authenticating with Stripe
   def postfill!(customer)
