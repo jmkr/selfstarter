@@ -1,6 +1,7 @@
 Selfstarter::Application.routes.draw do
   root :to => 'root#index'
 
+  resources :diys, only: [:show, :index]
   resources :email_lists, only: [:create]
   resources :orders, only: [:new, :index, :create, :show] do
   	resources :shipments, only: [:index]
@@ -12,7 +13,7 @@ Selfstarter::Application.routes.draw do
 
   get '/faq',     to: 'static_pages#faq'
   get '/about',   to: 'static_pages#about'
-  get '/diy',     to: 'static_pages#diy'
+  get '/diy',     to: 'diys#index'
   get '/crate',   to: 'static_pages#crate'
   get '/contact', to: 'static_pages#contact'
   

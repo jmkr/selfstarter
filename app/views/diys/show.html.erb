@@ -1,0 +1,21 @@
+<div class="container widen gray">
+	<div class="row">
+		<h2 class="span4 offset4 text-center"><%= @diy.title %></h2>
+		<div class="span8 offset2 diy-tile">
+			<div class="thumbnail">
+				<img class="show-pic img-rounded img-responsive" 
+							alt="craft" 
+							src="<%= @diy.image %>">
+				<div class="caption">
+					<h5><strong><%= @diy.title %></strong></h5>
+					<p>
+						<pre><%= @diy.body %></pre>
+					</p>
+					<p>
+						<a href="#" class="btn btn-primary">Purchase</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
