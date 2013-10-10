@@ -32,12 +32,20 @@
 
   <div id="craft_nav">
     <ul>
-      <li class="item">
+      <li class="item crate">
         <h3><a href="/crate">The Crate</a></h3>
       </li>
       <li class="vertical_bar"></li>
-      <li class="item">
+      <li class="item  diy">
         <h3><a href="/diy">DIY</a></h3>
+      </li>
+      <li class="vertical_bar"></li>
+      <li class="item about">
+        <h3>
+          <a href="/about">
+            About Us
+          </a>
+        </h3>
       </li>
       <li class="vertical_bar"></li>
       <li class="item">
@@ -50,3 +58,10 @@
     </ul>
   </div>
 </div>
+
+<script type="text/javascript">
+  var url = document.URL.split("/");
+  var currentPage = url.pop();
+
+  $('.' + currentPage).addClass('active');
+</script>
