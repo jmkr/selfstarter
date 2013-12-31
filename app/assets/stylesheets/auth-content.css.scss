@@ -1,0 +1,32 @@
+.auth_content {
+  text-align: center;
+  margin: 0 auto;
+  width: 300px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background-color: #F8F8F8;
+  padding: 20px;
+  border-radius: 4px;
+
+  .auth_row {
+    text-align: left;
+    margin: 24px 0;
+    height: 40px;
+    label {
+      float: left;
+      padding: 10px;
+    }
+    input:not([type=submit]) {
+      float: right;
+    }
+  }
+
+  .blue_button {
+    width: 100%;
+  }
+
+  a {
+    text-decoration: none;
+    margin: 10px 0;
+  }
+}

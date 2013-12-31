@@ -3,7 +3,41 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .pic {
-	margin-right: 10px;
-	margin-bottom: 10px;
-	border-radius: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+/*.right {
+  margin-left: 500px;
+}*/
+
+.crate_points {
+  max-width: 900px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+
+  .point {
+    margin-bottom: 120px;
+    p {
+      padding-top: 30px;
+    }
+  }
+
+  #img_one {
+    background: url(image_path("tassels.png"));
+    height: 160px;
+    width: 160px;
+    float:right;
+    margin: 0 20px;
+  }
+
+  #img_two {
+    background: url(image_path("tassels.png"));
+    height: 160px;
+    width: 160px;
+    float:left;
+    margin: 0 20px;
+  }
+
 }

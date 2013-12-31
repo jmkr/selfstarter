@@ -1,18 +1,20 @@
-<div class="gray_background">
-  <div class="wrapper clearfix">
-    <%= render 'layouts/flash_messages' %>
-    <div class="main_content">
-      <h3>Resend confirmation instructions</h3>
-      
-      <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
-      
-        <div><%= f.label :email %><br />
-        <%= f.email_field :email, {:id => 'email'} %></div>
-      
-        <div><%= f.submit "Resend confirmation instructions" %></div>
-      <% end %>
-      
-      <%= render "devise/shared/links" %>
+<div class="wrapper clearfix">
+  <%= render 'layouts/flash_messages' %>
+  <div class="auth_content">
+    <h3>Resend confirmation instructions</h3>
+    
+    <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+    
+    <div class="auth_row">
+      <%= f.label :email %>
+      <%= f.email_field :email, {:id => 'email'} %>
     </div>
+    
+    <div class="auth_row">
+      <%= f.submit "Resend confirmation instructions" %>
+    </div>
+    <% end %>
+    
+    <%= render "devise/shared/links" %>
   </div>
 </div>

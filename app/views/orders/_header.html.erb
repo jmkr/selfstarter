@@ -20,17 +20,15 @@
   </div>
 </div>
 <div class="container">
-  <div class="wrapper clearfix">
-    <div class="demo-headline">
-      <h1 class="demo-logo">
-        <a href="/">
-          <%= Settings.product_name %>
-        </a>
-      </h1>
-    </div>
+  <div class="demo-headline">
+    <h1 class="demo-logo">
+      <a href="/">
+        <%= Settings.product_name %>
+      </a>
+    </h1>
   </div>
 
-  <div id="craft_nav">
+  <div id="craft_nav" class="container">
     <ul>
       <li class="item crate">
         <h3><a href="/crate">The Crate</a></h3>
@@ -58,10 +56,3 @@
     </ul>
   </div>
 </div>
-
-<script type="text/javascript">
-  var url = document.URL.split("/");
-  var currentPage = url.pop();
-
-  $('.' + currentPage).addClass('active');
-</script>
